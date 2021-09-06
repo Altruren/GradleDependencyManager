@@ -1,9 +1,10 @@
 class FileExtractor:
-    def __init__(self, fileName):
+    def __init__(self, fileName, strategy):
         self.file = fileName
+        self.strategy = strategy
 
-    def getItemFromFile(self, itemToRetrieve, splitter):
-        return self.extractItemFromLines(self.getFileLines(), itemToRetrieve, splitter)
+    def getPropertyFromFile(self, itemToExtract):
+        return self.extractItemFromLines(self.getFileLines(), self.strategy, itemToExtract)
 
     def getFileLines(self):
         fileToRetrieveFrom = open(self.file, 'r')
@@ -11,8 +12,5 @@ class FileExtractor:
         fileToRetrieveFrom.close()
         return lines
 
-    def extractItemFromLines(self, lines, idToFind, splitter):
-        for line in lines:
-            if line.startswith(idToFind):
-                split = line.split(splitter)
-                return split[1].strip("\n")
+    def extractItemFromLines(self, lines, strategy, itemToExtract):
+        return strategy.extract(lines, itemToExtract)

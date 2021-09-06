@@ -4,6 +4,6 @@ from VersionRetriever import VersionRetriever
 
 class Test(TestCase):
     def test_dependency_is_retrieved_from_gradle_properties(self):
-        finder = VersionRetriever()
+        finder = VersionRetriever('gradle.properties')
         version = finder.retrieveVersionFromGradleProperties()
         self.assertEqual(version, "1.0.0")

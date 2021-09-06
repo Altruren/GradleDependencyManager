@@ -1,12 +1,10 @@
 from FileExtractor import FileExtractor
+from GradleVersionStrategy import GradleVersionStrategy
 
 
 class VersionRetriever:
-    def __init__(self):
-        self.fileExtractor = FileExtractor(
-            'C:\Users\djohn\AndroidStudioProjects\TestProjectForGradleProperties\gradle.properties')
+    def __init__(self, gradlePropertiesFile):
+        self.fileExtractor = FileExtractor(gradlePropertiesFile, GradleVersionStrategy())
 
     def retrieveVersionFromGradleProperties(self):
-        versionID = "version="
-        splitter = "="
-        return self.fileExtractor.getItemFromFile(versionID, splitter)
+        return self.fileExtractor.getPropertyFromFile("version")
