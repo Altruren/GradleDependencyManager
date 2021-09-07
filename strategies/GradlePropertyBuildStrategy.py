@@ -1,9 +1,6 @@
-from GradleProperty import GradleProperty
+from datamodel.GradleProperty import GradleProperty
+from strategies.BuildStrategy import BuildStrategy
 
-
-class BuildStrategy(object):
-    def build(self, lines):
-        pass
 
 class GradlePropertyBuildStrategy(BuildStrategy):
 

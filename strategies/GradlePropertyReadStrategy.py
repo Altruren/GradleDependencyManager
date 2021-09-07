@@ -1,7 +1,7 @@
-from GradleVersionReadStrategy import ExtractionStrategy
+from GradleVersionReadStrategy import ReadStrategy
 
 
-class GradlePropertyReadStrategy(ExtractionStrategy):
+class GradlePropertyReadStrategy(ReadStrategy):
     def extract(self, lines, extractee):
         splitter = "="
         for line in lines:

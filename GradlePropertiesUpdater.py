@@ -1,10 +1,10 @@
-from FilePropertyUpdater import FilePropertyUpdater
-from GradlePropertyBuildStrategy import GradlePropertyBuildStrategy
+from file.FilePropertyUpdater import FilePropertyUpdater
+from strategies.GradlePropertyBuildStrategy import GradlePropertyBuildStrategy
 
 
 class GradlePropertiesUpdater:
     def __init__(self, fileName):
         self.fileUpdater = FilePropertyUpdater(fileName)
 
-    def updateGradleProperties(self, dependencyToUpdate, newVersion, newFileName):
-        self.fileUpdater.updateProperty(GradlePropertyBuildStrategy(dependencyToUpdate, newVersion), newFileName)
+    def updateGradleProperties(self, dependencyToUpdate, newVersion):
+        self.fileUpdater.update(GradlePropertyBuildStrategy(dependencyToUpdate, newVersion))

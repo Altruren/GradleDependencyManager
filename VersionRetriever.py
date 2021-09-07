@@ -1,5 +1,5 @@
-from FilePropertyExtractor import FilePropertyExtractor
-from GradleVersionReadStrategy import GradleVersionStrategy
+from file.FilePropertyExtractor import FilePropertyExtractor
+from strategies.GradleVersionReadStrategy import GradleVersionStrategy
 
 
 class VersionRetriever:

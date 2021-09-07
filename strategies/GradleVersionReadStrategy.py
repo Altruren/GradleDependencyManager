@@ -1,8 +1,7 @@
-class ExtractionStrategy(object):
-    def extract(self, lines, extractee):
-        pass
+from strategies.ReadStrategy import ReadStrategy
 
-class GradleVersionStrategy(ExtractionStrategy):
+
+class GradleVersionStrategy(ReadStrategy):
     def extract(self, lines, extractee):
         splitter = "="
         for line in lines:

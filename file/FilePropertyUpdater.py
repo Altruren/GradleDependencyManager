@@ -6,12 +6,12 @@ class FilePropertyUpdater:
         self.file = fileName
         self.fileReader = FileReader(self.file)
 
-    def updateProperty(self, strategy, newFileName):
+    def update(self, strategy):
         lines = self.fileReader.getFileLines()
         newFileString = strategy.build(lines)
-        self.writeToFile(newFileName, newFileString)
+        self.writeToFile(newFileString)
 
-    def writeToFile(self, fileName, newFileString):
-        fileToWriteTo = open(fileName, 'w')
+    def writeToFile(self, newFileString):
+        fileToWriteTo = open(self.file, 'w')
         fileToWriteTo.write(newFileString)
         fileToWriteTo.close()
