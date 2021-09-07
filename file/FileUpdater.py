@@ -1,17 +1,17 @@
 from FileReader import FileReader
 
 
-class FilePropertyUpdater:
+class FileUpdater:
     def __init__(self, fileName):
         self.file = fileName
         self.fileReader = FileReader(self.file)
 
     def update(self, strategy):
         lines = self.fileReader.getFileLines()
-        newFileString = strategy.build(lines)
-        self.writeToFile(newFileString)
+        updatedFileString = strategy.build(lines)
+        self.writeToFile(updatedFileString)
 
-    def writeToFile(self, newFileString):
+    def writeToFile(self, updatedFileString):
         fileToWriteTo = open(self.file, 'w')
-        fileToWriteTo.write(newFileString)
+        fileToWriteTo.write(updatedFileString)
         fileToWriteTo.close()

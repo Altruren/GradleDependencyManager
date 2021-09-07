@@ -1,6 +1,6 @@
 import unittest
 
-from file.FilePropertyExtractor import FilePropertyExtractor
+from file.FileExtractor import FilePropertyExtractor
 from GradlePropertiesUpdater import GradlePropertiesUpdater
 from strategies.GradlePropertyReadStrategy import GradlePropertyReadStrategy
 
@@ -17,4 +17,4 @@ class MyTestCase(unittest.TestCase):
 
     def getVersionFromGradleProperties(self, property, testGradleProperties):
         filePropertyRetriever = FilePropertyExtractor(testGradleProperties)
-        return filePropertyRetriever.getPropertyFromFile(property, GradlePropertyReadStrategy())
+        return filePropertyRetriever.getPropertyFromFile(GradlePropertyReadStrategy(property))

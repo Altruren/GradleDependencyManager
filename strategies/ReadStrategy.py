@@ -1,3 +1,3 @@
 class ReadStrategy(object):
-    def extract(self, lines, extractee):
+    def extract(self, lines):
         pass
