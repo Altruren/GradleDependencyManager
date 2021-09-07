@@ -10,8 +10,11 @@ class MyTestCase(unittest.TestCase):
         property = "com.example.package:Dependency"
         testGradleProperties = "gradle.properties"
         updater = GradlePropertiesUpdater(testGradleProperties)
+        updater.updateGradleProperties(property, "1.0.2")
+        self.assertEqual("1.0.2", self.getVersionFromGradleProperties(property, testGradleProperties))
         updater.updateGradleProperties(property, "1.0.1")
+        self.assertEqual("1.0.1", self.getVersionFromGradleProperties(property, testGradleProperties))
 
+    def getVersionFromGradleProperties(self, property, testGradleProperties):
         filePropertyRetriever = FilePropertyExtractor(testGradleProperties)
-        expectedVersion = filePropertyRetriever.getPropertyFromFile(property, GradlePropertyReadStrategy())
-        self.assertEqual("1.0.1", expectedVersion)
+        return filePropertyRetriever.getPropertyFromFile(property, GradlePropertyReadStrategy())
