@@ -14,4 +14,4 @@ class GradleVersionReadStrategy(ReadStrategy):
                 return split[1].strip("\n")
 
     def removeWhiteSpaceForComparison(self, string):
-        return string.replace(" ", "")
+        return "".join(string.split())
