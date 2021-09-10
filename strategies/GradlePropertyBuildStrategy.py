@@ -15,17 +15,20 @@ class GradlePropertyBuildStrategy(BuildStrategy):
         newFileString = ""
         for line in lines:
             lineToAdd = line
-            if self.dependencyToUpdate in line:
-                if (self.isFullDependency(line)):
+            if self.isDependencyInLine(line):
+                if (self.isFullDependencyFormat(line)):
                     lineToAdd = self.buildGradleFullDependency(line, self.newVersion)
                 else:
                     lineToAdd = self.buildGradleVersionProperty(line, self.newVersion)
             newFileString += lineToAdd
         return newFileString
 
-    def isFullDependency(self, line):
+    def isFullDependencyFormat(self, line):
         colonsInDependencyFormat = 2
         return line.count(":") == colonsInDependencyFormat
+
+    def isDependencyInLine(self, line):
+        return self.dependencyToUpdate in line
 
     def buildGradleFullDependency(self, line, newVersion):
         propertySeparator = "="
