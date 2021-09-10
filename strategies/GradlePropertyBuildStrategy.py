@@ -31,12 +31,10 @@ class GradlePropertyBuildStrategy(BuildStrategy):
         return self.dependencyToUpdate in line
 
     def buildGradleFullDependency(self, line, newVersion):
-        propertySeparator = "="
-        dependencySeparator = ":"
-        propertySplit = line.split(propertySeparator)
+        propertySplit = line.split(self.propertySeparator)
         propertyName = propertySplit[0]
         propertyDefinition = propertySplit[1]
-        dependencySplit = propertyDefinition.split(dependencySeparator)
+        dependencySplit = propertyDefinition.split(self.dependencySeparator)
         module = dependencySplit[0]
         group = dependencySplit[1]
 
@@ -45,8 +43,7 @@ class GradlePropertyBuildStrategy(BuildStrategy):
         return str(gradleProperty)
 
     def buildGradleVersionProperty(self, line, newVersion):
-        propertySeparator = "="
-        propertySplit = line.split(propertySeparator)
+        propertySplit = line.split(self.propertySeparator)
         propertyName = propertySplit[0]
 
         gradleVersionProperty = GradleVersionProperty(propertyName, newVersion)
