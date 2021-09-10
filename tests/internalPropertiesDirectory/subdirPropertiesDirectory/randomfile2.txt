@@ -1,0 +1,2 @@
+dependency=com.example.package:Dependency:1.0.1
+#Should not pick up the above dependency

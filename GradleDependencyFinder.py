@@ -1,6 +1,9 @@
 import os
 
+from file.FileFilterer import FileFilterer
 from file.FileReader import FileReader
+from os.path import isdir
+from os.path import join
 
 
 class GradleDependencyFinder:
@@ -9,18 +12,16 @@ class GradleDependencyFinder:
         self.dependencyToFind = dependencyToFind
 
     def findGradleFilesWithDependency(self, dependency):
-        gradleFiles = self.findAllGradleFiles()
+        gradleFiles = self.findAllGradleFiles(self.parentDirectory)
         return self.filterGradleFilesThatHaveDependency(gradleFiles, dependency)
 
-    def findAllGradleFiles(self):
-        fileList = os.listdir(self.parentDirectory)
-        return self.getGradleFiles(fileList)
-
-    def getGradleFiles(self, fileList):
-        gradleFiles = []
-        for file in fileList:
-            if file == "build.gradle" or file == "gradle.properties":
-                gradleFiles.append(file)
+    def findAllGradleFiles(self, directory):
+        fileList = os.listdir(directory)
+        gradleFiles = FileFilterer().filterFilesWithValidName(fileList)
+        for subElement in fileList:
+            fullPath = join(directory, subElement)
+            if isdir(fullPath):
+                gradleFiles.extend(self.findAllGradleFiles(fullPath))
         return gradleFiles
 
     def filterGradleFilesThatHaveDependency(self, gradleFiles, dependencyToFilterOn):
