@@ -1,7 +1,6 @@
 from strategies.ReadStrategy import ReadStrategy
 
-
-class GradleVersionStrategy(ReadStrategy):
+class GradleVersionReadStrategy(ReadStrategy):
 
     def __init__(self, version):
         self.version = version
@@ -9,6 +8,10 @@ class GradleVersionStrategy(ReadStrategy):
     def extract(self, lines):
         splitter = "="
         for line in lines:
-            if line.startswith(self.version + splitter):
+            lineToTest = self.removeWhiteSpaceForComparison(line)
+            if lineToTest.startswith(self.version + splitter):
                 split = line.split(splitter)
                 return split[1].strip("\n")
+
+    def removeWhiteSpaceForComparison(self, string):
+        return string.replace(" ", "")

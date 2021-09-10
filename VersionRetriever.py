@@ -1,5 +1,5 @@
 from file.FileExtractor import FilePropertyExtractor
-from strategies.GradleVersionReadStrategy import GradleVersionStrategy
+from strategies.GradleVersionReadStrategy import GradleVersionReadStrategy
 
 
 class VersionRetriever:
@@ -7,4 +7,4 @@ class VersionRetriever:
         self.fileExtractor = FilePropertyExtractor(gradlePropertiesFile)
 
     def retrieveVersionFromGradleProperties(self):
-        return self.fileExtractor.getPropertyFromFile(GradleVersionStrategy("version"))
+        return self.fileExtractor.getPropertyFromFile(GradleVersionReadStrategy("version"))
